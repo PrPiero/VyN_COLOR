@@ -72,8 +72,8 @@
                                 <p class="text-sm">Calle Felipe Durand #136</p>
                             @else
                             <p class="text-sm">Los productos serán enviados a: </p>
-                            <p class="text-sm">{{$order->address}}</p>
-                            <p>{{$order->department->name}} - {{$order->city->name}} - {{$order->district->name}}</p>
+                            <p class="text-sm">{{$envio->address}}</p>
+                            <p>{{$envio->department}} - {{$envio->city}} - {{$envio->district}}</p>
                             @endif
                         </div>
                         <div>
@@ -155,7 +155,7 @@
 
                         <!--<button type="submit" class="mercadopago-button" formmethod="post"  style="width: 100%;">Pagar</button>-->
                     </div>
-                    <div id="paypal-button-container"></div>
+                    {{--<div id="paypal-button-container"></div>--}}
                     {{--<div>
                         <x-jet-button id="buyButton" class="w-full justify-center">
                             Pagar con Tarjeta de Crédito o Débito

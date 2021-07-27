@@ -8,6 +8,7 @@ use Livewire\Component;
 class DepartmentComponent extends Component
 {
     public $departments, $department;
+
     protected $listeners = ['delete'];
 
     public $createForm = [
@@ -20,43 +21,58 @@ class DepartmentComponent extends Component
     ];
 
     protected $validationAttributes = [
-        'createForm.name' => 'nombre'
+        'createForm.name' => 'nombre',
+        'editForm.name' => 'nombre'
     ];
 
-    public function mount(){
+    public function mount()
+    {
         $this->getDepartments();
     }
 
-    public function getDepartments(){
+    public function getDepartments()
+    {
         $this->departments = Department::all();
     }
 
-    public function save(){
+    public function save()
+    {
         $this->validate([
             "createForm.name" => 'required'
         ]);
+
         Department::create($this->createForm);
+
         $this->reset('createForm');
         $this->getDepartments();
-
         $this->emit('saved');
     }
 
-    public function edit(Department $department){
+    public function edit(Department $department)
+    {
+        $this->resetValidation();
+
         $this->department = $department;
+
         $this->editForm['open'] = true;
         $this->editForm['name'] = $department->name;
-
     }
 
-    public function update(){
+    public function update()
+    {
+        $this->validate([
+            "editForm.name" => 'required'
+        ]);
+
         $this->department->name =  $this->editForm['name'];
         $this->department->save();
+
         $this->reset('editForm');
         $this->getDepartments();
     }
 
-    public function delete(Department $department){
+    public function delete(Department $department)
+    {
         $department->delete();
         $this->getDepartments();
     }

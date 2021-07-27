@@ -2,7 +2,7 @@
     {{--Agregar Departamentos--}}
     <x-jet-form-section submit="save" class="mb-6">
         <x-slot name="title">
-            Agregar un nuevo departamento
+            Agregar Nuevo Departamento
         </x-slot>
 
         <x-slot name="description">
@@ -14,7 +14,7 @@
                 <x-jet-label>
                     Nombre
                 </x-jet-label>
-                <x-jet-input wire:model="createForm.name" type="text" class="w-full mt-1"/>
+                <x-jet-input wire:model.defer="createForm.name" type="text" class="w-full mt-1"/>
 
                 <x-jet-input-error for="createForm.name" />
 
@@ -36,7 +36,7 @@
     {{--Mostrar Departamento--}}
     <x-jet-action-section>
         <x-slot name="title">
-            Lista de departamentos
+            Lista de Departamentos
         </x-slot>
         <x-slot name="description">
             Aqui encontrará todas los departamentos agregados
@@ -61,7 +61,7 @@
                             <td class="py-2">
                                 <div class="flex divide-x divide-gray-300 font-semibold">
                                     <a class="pr-2 hover:text-blue-600 cursor-pointer" wire:click="edit({{$department}})">Editar</a>
-                                    <a class="pr-2 hover:text-red-600 cursor-pointer" wire:click="">Eliminar</a>
+                                    <a class="pr-2 hover:text-red-600 cursor-pointer" wire:click="$emit('deleteDepartment', {{$department->id}})">Eliminar</a>
                                 </div>
                             </td>
                         </tr>
@@ -90,11 +90,37 @@
             </div>
         </x-slot>
         <x-slot name="footer">
-            <x-jet-button class="bg-green-500 hover:bg-green-700" wire:click="update" wire:loading.attr="disabled" wire:target="editImage, update">
+            <x-jet-button class="bg-green-500 hover:bg-green-700" wire:click="update" wire:loading.attr="disabled" wire:target="update">
                 ACTUALIZAR
             </x-jet-button>
         </x-slot>
     </x-jet-dialog-modal>
-</div>
 
+    @push('script')
+        <script>
+            Livewire.on('deleteDepartment', departmentId => {
+                Swal.fire({
+                    title: '¿Está seguro?',
+                    text: "¡No podrá revertir esta acción!",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: '¡Si, Eliminar!',
+                    cancelButtonText: 'Cancelar',
+                }).then((result) => {
+                    if (result.isConfirmed) {
+
+                        Livewire.emitTo('admin.department-component', 'delete',departmentId)
+
+                        Swal.fire(
+                            '¡Eliminado',
+                            'La marca ha sido eliminada',
+                            'success'
+                        );
+                    }
+                });
+            });
+        </script>
+    @endpush
 </div>

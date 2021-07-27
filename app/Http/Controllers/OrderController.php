@@ -32,8 +32,11 @@ class OrderController extends Controller
     public function show(Order $order){
 
         $this->authorize('author', $order);
+
         $items = json_decode($order->content);
-        return view('orders.show',compact('order','items'));
+        $envio = json_decode($order->envio);
+
+        return view('orders.show',compact('order', 'items', 'envio'));
     }
 
     public function pay(Order $order, Request $request){

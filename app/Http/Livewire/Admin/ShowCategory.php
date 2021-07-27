@@ -22,7 +22,9 @@ class ShowCategory extends Component
 
     protected $validationAttributes = [
         'createForm.name' => 'nombre',
-        'createForm.slug' => 'url'
+        'createForm.slug' => 'url',
+        'editForm.name' => 'nombre',
+        'editForm.slug' => 'url'
     ];
 
     public $createForm = [
@@ -75,8 +77,8 @@ class ShowCategory extends Component
         $this->resetValidation();
 
         $this->subcategory = $subcategory;
-        $this->editForm['open'] = true;
 
+        $this->editForm['open'] = true;
         $this->editForm['name'] = $subcategory->name;
         $this->editForm['slug'] = $subcategory->slug;
         $this->editForm['color'] = $subcategory->color;

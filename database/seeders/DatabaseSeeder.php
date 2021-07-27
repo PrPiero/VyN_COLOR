@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
         $this->call(WorkersTableSeeder::class);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         $this->call(UserSeeder::class);
+        $this->call(BrandSeeder::class);
         $this->call(CategorySeeder::class);
         $this->call(SubcategorySeeder::class);
         $this->call(ProductSeeder::class);
@@ -39,5 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(SizeSeeder::class);
         $this->call(ColorSizeSeeder::class);
         $this->call(DepartmentSeeder::class);
+        $this->call(ImagesSeeder::class);
+        $this->call(Brand_CategorySeeder::class);
     }
 }

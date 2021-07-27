@@ -99,8 +99,9 @@ class EditProduct extends Component
 
     public function delete()
     {
+        //$img = new Image();
         $images = $this->product->images;
-        //dd($this->product->images);
+        //dd($images);
         //Storage::delete([$image->url]);
         //$image->delete();
         foreach ($images as $image)
@@ -112,8 +113,8 @@ class EditProduct extends Component
         }
 
         $this->refreshProduct();
-        //$this->product->delete();
-        //return redirect()->route('admin.index');
+        $this->product->delete();
+        return redirect()->route('admin.index');
     }
 
     public function render()

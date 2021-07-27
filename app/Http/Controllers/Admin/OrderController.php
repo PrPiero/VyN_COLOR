@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::query();
+        $orders = Order::query()->where('status','<>' ,1);
 
         if (request('status'))
         {
@@ -30,6 +30,6 @@ class OrderController extends Controller
 
     public function show(Order $order)
     {
-        return view('livewire.admin.orders.show');
+        return view('livewire.admin.orders.show', compact('order'));
     }
 }

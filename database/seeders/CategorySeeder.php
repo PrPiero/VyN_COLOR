@@ -18,79 +18,75 @@ class CategorySeeder extends Seeder
     {
         $categories = [
             [
-                'name' => 'Piel',
-                'slug' => Str::slug('Piel'),
+                'id'=>'1',
+                'name' => 'Cabello',
+                'slug' => Str::slug('Cabello'),
+                'image' => '../img/categories/cabello.jpg',
                 'icon' =>'<i class="fas fa-female"></i>'
-
             ],
 
             [
-                'name' => 'Ojos',
-                'slug' => Str::slug('Ojos'),
+                'id'=>'2',
+                'name' => 'Cejas',
+                'slug' => Str::slug('Cejas'),
+                'image' => '../img/categories/cejas.jpg',
                 'icon' => '<i class="far fa-eye"></i>'
-
             ],
-
-
             [
-                'name' => 'Labios',
-                'slug' => Str::slug('Labios'),
+                'id'=>'3',
+                'name' => 'Cuidado Personal',
+                'slug' => Str::slug('Cuidado Personal'),
+                'image' => '../img/categories/cuidadopersonal.jpg',
                 'icon' => '<i class="fas fa-grin-alt"></i>'
 
             ],
-
             [
-                'name' => 'Cabello',
-                'slug' => Str::slug('Cabello'),
+                'id'=>'4',
+                'name' => 'Depilador',
+                'slug' => Str::slug('Depilador'),
+                'image' => '../img/categories/depilador.jpg',
                 'icon' => '<i class="fas fa-air-freshener"></i>'
-
             ],
-
             [
-                'name' => 'Uñas',
-                'slug' => Str::slug('Uñas'),
+                'id'=>'5',
+                'name' => 'Labios',
+                'slug' => Str::slug('Labios'),
+                'image' => '../img/categories/labios.jpg',
                 'icon' => '<i class="fas fa-hand-sparkles"></i>'
-
             ],
 
             [
-                'name' => 'Aseo e Higiene Personal',
-                'slug' => Str::slug('Aseo e Higiene Personal'),
+                'id'=>'6',
+                'name' => 'Ojos',
+                'slug' => Str::slug('Ojos'),
+                'image' => '../img/categories/ojos.jpg',
                 'icon' => '<i class="fas fa-pump-soap"></i>'
-
             ],
-
             [
-                'name' => 'Productos Depilatorios',
-                'slug' => Str::slug('Productos Depilatorios'),
+                'id'=>'7',
+                'name' => 'Perfumes',
+                'slug' => Str::slug('Perfumes'),
+                'image' => '../img/categories/perfumes.jpg',
                 'icon' => '<i class="fas fa-ring"></i>'
-
             ],
-
             [
-                'name' => 'Bronceado y Protección Solar',
-                'slug' => Str::slug('Bronceado y Protección Solar'),
+                'id'=>'8',
+                'name' => 'Piel',
+                'slug' => Str::slug('Piel'),
+                'image' => '../img/categories/piel.jpg',
                 'icon' => '<i class="fas fa-sun"></i>'
-
             ],
-
             [
-                'name' => 'Perfumeria',
-                'slug' => Str::slug('Perfumeria'),
+                'id'=>'9',
+                'name' => 'Rostro',
+                'slug' => Str::slug('Rostro'),
+                'image' => '../img/categories/rostro.jpg',
                 'icon' => '<i class="fas fa-magic"></i>'
-
             ],
-
         ];
 
-        foreach ($categories as $category )
-        {
-            $category = Category::factory(1)->create($category)->first();
-            $brands = Brand::factory(4)->create();
-
-            foreach($brands as $brand){
-                $brand->categories()->attach($category->id);
-            }
+        foreach($categories as $category){
+            Category::create($category);
         }
     }
 }

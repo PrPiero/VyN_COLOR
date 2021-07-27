@@ -98,7 +98,7 @@ class CreateCategory extends Component
 
         $category->brands()->attach($this->createForm['brands']);
 
-        $this->rand = rand();
+        //$this->rand = rand();
         $this->reset('createForm');
         $this->getCategories();
         $this->emit('saved');
